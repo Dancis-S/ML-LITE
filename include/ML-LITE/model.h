@@ -6,7 +6,7 @@
 #include <vector>
 
 // ABC for all the models we will implement
-class model {
+class Model {
 public:
   virtual ~Model() = default;
 
@@ -15,8 +15,8 @@ public:
 
   virtual double evaluate(const Eigen::MatrixXd &trix) const = 0;
 
-  virtual void save_model(const std::string &file_path) const {}
-  virtual void load_model(const std::string &file_path) {}
+  //virtual void save_model(const std::string &file_path) const {}
+  //virtual void load_model(const std::string &file_path) {}
 };
 
 #endif

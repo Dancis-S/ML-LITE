@@ -29,3 +29,13 @@ void LinearRegression::fit(const Eigen::MatrixXd &input,
     weights_ = weights_ - (learning_rate * gradients);
   }
 }
+
+double LinearRegression::getBias() {
+  return bias_;
+}
+
+Eigen::VectorXd LinearRegression::getWeights() {
+  return weights_;
+}
+
+

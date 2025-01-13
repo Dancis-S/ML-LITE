@@ -3,12 +3,15 @@
 #include <iostream>
 
 LinearRegression::LinearRegression() : weights_(), bias_(0.0) {
-  // I'll set weights dynamically during fit
+  // Constructor
+}
+LinearRegression::~LinearRegression() {
+  // Destructor
 }
 
-void LinearRegression::fit(const Eigen::MatrixXd &input,
-                           const Eigen::MatrixXd &target, double learning_rate,
-                           int epochs) {
+void LinearRegression::fitImpl(const Eigen::MatrixXd &input,
+                               const Eigen::MatrixXd &target,
+                               double learning_rate, int epochs) {
   // Weight and Bias init
   bias_ = 0.0;
   weights_ = Eigen::MatrixXd::Random(input.cols(), 1) * 0.5;
@@ -30,12 +33,15 @@ void LinearRegression::fit(const Eigen::MatrixXd &input,
   }
 }
 
-double LinearRegression::getBias() {
-  return bias_;
+Eigen::VectorXd LinearRegression::predictImpl(const Eigen::MatrixXd &input) {
+  return (input * weights_) + Eigen::VectorXd::Constant(trix.rows(), bias_);
 }
 
-Eigen::VectorXd LinearRegression::getWeights() {
-  return weights_;
+double LinearRegression::evaluateImpl(const Eigen::MatrixXd &input) {
+  return 0.0;
 }
 
+// Getters
+double LinearRegression::getBias() const { return bias_; }
 
+Eigen::VectorXd LinearRegression::getWeights() const { return weights_; }

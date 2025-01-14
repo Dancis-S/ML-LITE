@@ -1,6 +1,4 @@
-// This will be the lin reg .cpp file
 #include "linear_regression.h"
-#include <iostream>
 
 LinearRegression::LinearRegression() : weights_(), bias_(0.0) {
   // Constructor
@@ -9,9 +7,9 @@ LinearRegression::~LinearRegression() {
   // Destructor
 }
 
-void LinearRegression::fitImpl(const Eigen::MatrixXd &input,
-                               const Eigen::MatrixXd &target,
-                               double learning_rate, int epochs) {
+void LinearRegression::fit(const Eigen::MatrixXd &input,
+                           const Eigen::MatrixXd &target, double learning_rate,
+                           int epochs) {
   // Weight and Bias init
   bias_ = 0.0;
   weights_ = Eigen::MatrixXd::Random(input.cols(), 1) * 0.5;
@@ -19,7 +17,8 @@ void LinearRegression::fitImpl(const Eigen::MatrixXd &input,
   // Linear Reg logic here. Predict, Error, Gradients, Updates.
   while (epochs--) {
     // Predict: y = Xw + b
-    Eigen::MatrixXd prediction = (input * weights_) + bias_;
+    Eigen::MatrixXd prediction =
+        (input * weights_) + Eigen::VectorXd::Constant(input.rows(), bias_);
 
     // Error: (y - target)
     Eigen::MatrixXd error = prediction - target;
@@ -33,13 +32,11 @@ void LinearRegression::fitImpl(const Eigen::MatrixXd &input,
   }
 }
 
-Eigen::VectorXd LinearRegression::predictImpl(const Eigen::MatrixXd &input) {
-  return (input * weights_) + Eigen::VectorXd::Constant(trix.rows(), bias_);
+Eigen::VectorXd LinearRegression::predict(const Eigen::MatrixXd &input) {
+  return (input * weights_) + Eigen::VectorXd::Constant(input.rows(), bias_);
 }
 
-double LinearRegression::evaluateImpl(const Eigen::MatrixXd &input) {
-  return 0.0;
-}
+double LinearRegression::evaluate(const Eigen::MatrixXd &input) { return 0.0; }
 
 // Getters
 double LinearRegression::getBias() const { return bias_; }

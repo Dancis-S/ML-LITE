@@ -4,26 +4,21 @@
 #include <Eigen/Dense>
 #include <string>
 
-class LinearRegression : public LinearRegression {
+class LinearRegression {
 public:
   LinearRegression();
-  ~LinearRegression() override;
+  ~LinearRegression();
 
   // Getters
   Eigen::VectorXd getWeights() const;
   double getBias() const;
 
-protected:
-  // Overriden virtual methods from model
-  template <typename... Params>
-  void fitImpl(const Eigen::MatrixXd &input, const Eigen::MatrixXd target,
-               double learning_rate, int epochs) override;
+  void fit(const Eigen::MatrixXd &matrix, const Eigen::MatrixXd &target,
+           double learning_rate, int epochs);
 
-  template <typename... Params>
-  Eigen::VectorXd predictImpl(const Eigen::MatrixXd &trix) const override;
+  Eigen::VectorXd predict(const Eigen::MatrixXd &matrix);
 
-  template <typename... Params>
-  double evaluateImpl(const Eigen::MatrixXd &trix) const override;
+  double evaluate(const Eigen::MatrixXd &matrix);
 
 private:
   double bias_;

@@ -3,19 +3,19 @@
 #include <iostream>
 
 int main() {
-  // Define a small dataset: y = 2x + 3
-  Eigen::MatrixXd input(3, 1); // 3 rows, 1 feature
-  input << 1, 2, 3;            // x values
+  // Testing for y = 2x + 3
+  Eigen::MatrixXd input(5, 1); // 3 rows, 1 feature
+  input << 1, 2, 3, 4, 5;      // x values
 
-  Eigen::MatrixXd target(3, 1); // y values
-  target << 5, 7, 9;            // Corresponding y values for y = 2x + 3
+  Eigen::MatrixXd target(5, 1); // y values
+  target << 5, 7, 9, 11, 13;    // Corresponding y values for y = 2x + 3
 
   // Initialize the LinearRegression model
   LinearRegression model;
 
   // Train the model
-  double learning_rate = 0.01;
-  int epochs = 1000;
+  double learning_rate = 0.005;
+  int epochs = 10000;
   model.fit(input, target, learning_rate, epochs);
 
   // Print the learned weights and bias
@@ -24,10 +24,10 @@ int main() {
 
   // Test the model on new input
   Eigen::MatrixXd test_input(1, 1);
-  test_input << 4; // Predict y for x = 4
+  test_input << 10; // Predict y for x = 4
   Eigen::MatrixXd prediction = model.predict(test_input);
 
-  std::cout << "Prediction for input 4:\n" << prediction << std::endl;
+  std::cout << "Prediction for input 10:\n" << prediction << std::endl;
 
   return 0;
 }

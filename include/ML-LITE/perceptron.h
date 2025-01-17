@@ -1,5 +1,5 @@
-#IFNDEF LINEAR_CLASSIFIER
-#DEF LINEAR_CLASSIFIER
+#ifndef LINEAR_CLASSIFIER
+#define LINEAR_CLASSIFIER
 
 #include <Eigen/Dense>
 
@@ -8,11 +8,10 @@ public:
   Perceptron();
   ~Perceptron();
 
-  void fit(Eigen::MatrixXd const &input, Eigen::MatrixXd const &target,
+  void fit(Eigen::MatrixXd const &input, Eigen::VectorXd const &target,
            double learning_rate);
 
-  Eigen::VectorXd predict(Eigen::MatrixXd const &input,
-                          Eigen::MatrixXd const &target);
+  int predict(Eigen::VectorXd const &input);
 
   double evaluate(Eigen::MatrixXd const &input);
 
@@ -24,4 +23,4 @@ protected:
   double bias_;
 };
 
-#END
+#endif

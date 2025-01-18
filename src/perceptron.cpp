@@ -12,23 +12,17 @@ void Perceptron::fit(const Eigen::MatrixXd &input, const Eigen::VectorXd &target
   bool converged = false;
 
   while (epochs-- && !converged) {
-    converged = true; //
+    converged = true;
     for (int i = 0; i < input.rows(); i++) {
       double output = input.row(i) * weights_ + bias_;
 
-      // Handle getting the predicted class (create a util func for this)
-      int predicted = 0;
-      if (output < 0) {
-        predicted = -1;
-      } else {
-        predicted = 1;
-      }
+      int predicted = (output < 0) ? -1 : 1;
 
       // Handle wrong prediction udpates
       if (predicted != target(i)) {
         converged = false;
-        double difference = learning_rate * target(i) * output;
-        weights_(i) = weights_(i) + difference;
+        Eigen::VectorXd difference = learning_rate * target(i) * input.row(i).transpose();
+        weights_ = weights_ + difference;
         bias_ += (learning_rate * target(i));
       }
     }

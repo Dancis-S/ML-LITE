@@ -1,4 +1,4 @@
-#include "perceptron.h"
+#include "ML-LITE/perceptron.h"
 
 Perceptron::Perceptron() : weights_(), bias_(1.0) {}
 Perceptron::~Perceptron() {}
@@ -32,13 +32,7 @@ void Perceptron::fit(const Eigen::MatrixXd &input, const Eigen::VectorXd &target
 int Perceptron::predict(const Eigen::VectorXd &input) {
   double output = (input.dot(weights_)) + bias_;
 
-  int predicted = 0;
-  if (output < 0) {
-    predicted = -1;
-  } else {
-    predicted = 1;
-  }
-
+  int predicted = (output < 0) ? -1 : 1;
   return predicted;
 }
 

@@ -1,6 +1,6 @@
-#include "linear_regression.h"
+#include "ML-LITE/linear_regression.h"
+#include "ML-LITE/perceptron.h"
 #include <Eigen/Dense>
-#include "perceptron.h"
 #include <iostream>
 
 int main() {

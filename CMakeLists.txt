@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Main executable
-add_executable(main src/main.cpp src/linear_regression.cpp src/perceptron.cpp)
+add_executable(main src/main.cpp src/linear_regression.cpp src/perceptron.cpp "include/ML-LITE/k_means.h")
 
 # Include directories for the main executable
 target_include_directories(main PRIVATE include)
@@ -23,7 +23,7 @@ else()
 endif()
 
 # Test executable
-add_executable(test_ml_lite test/test_perceptron.cpp src/perceptron.cpp)
+add_executable(test_ml_lite test/test_perceptron.cpp src/perceptron.cpp "include/ML-LITE/k_means.h")
 
 # Include directories for the test executable
 target_include_directories(test_ml_lite PRIVATE include)

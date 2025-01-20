@@ -4,11 +4,11 @@ Perceptron::Perceptron() : weights_(), bias_(1.0) {}
 Perceptron::~Perceptron() {}
 
 void Perceptron::fit(const Eigen::MatrixXd &input, const Eigen::VectorXd &target,
-                     double learning_rate= 0.1) {
+                     double learning_rate= 0.05) {
   // define the starting weights
   weights_ = Eigen::VectorXd::Random(input.cols(), 1) * 0.5;
 
-  int epochs = 1000; // Just to prevent the alg getting stuck in non separable
+  int epochs = 10000; // Just to prevent the alg getting stuck in non separable
   bool converged = false;
 
   while (epochs-- && !converged) {

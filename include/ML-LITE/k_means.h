@@ -5,15 +5,13 @@
 
 class KMeans {
 public:
-	KMeans();
+	KMeans(int n_clusters);
 	~KMeans();
 
-	void fit(Eigen::MatrixXd& input, int clusters);
+	void fit(const Eigen::MatrixXd& input);
 
 protected:
+	int n_cluster_;
 	Eigen::MatrixXd clusters_;
 };
-
-
-
 #endif

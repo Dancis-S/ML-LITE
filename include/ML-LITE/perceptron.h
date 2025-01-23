@@ -1,5 +1,5 @@
-#ifndef LINEAR_CLASSIFIER
-#define LINEAR_CLASSIFIER
+#ifndef PERCEPTRON
+#define PERCEPTRON
 
 #include <Eigen/Dense>
 

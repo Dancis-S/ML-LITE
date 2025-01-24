@@ -1,11 +1,7 @@
 #include "ML-LITE/linear_regression.h"
 
-LinearRegression::LinearRegression() : weights_(), bias_(0.0) {
-  // Constructor
-}
-LinearRegression::~LinearRegression() {
-  // Destructor
-}
+LinearRegression::LinearRegression() : weights_(), bias_(0.0) {}
+LinearRegression::~LinearRegression() {}
 
 void LinearRegression::fit(const Eigen::MatrixXd &input,
                            const Eigen::MatrixXd &target, double learning_rate,

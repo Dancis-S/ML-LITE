@@ -1,5 +1,6 @@
 #include "ML-LITE/linear_regression.h"
 #include "ML-LITE/perceptron.h"
+#include "ML-LITE/k_means.h"
 #include <Eigen/Dense>
 #include <iostream>
 
@@ -58,7 +59,26 @@ void test_linear_regression() {
   std::cout << "Prediction for input 10:\n" << prediction << std::endl;
 }
 
+void test_k_means() {
+  KMeans model = KMeans(2);
+
+  Eigen::MatrixXd data(6, 2);
+  data << 1, 2,
+    1, 3,
+    2, 3,
+    8, 9,
+    9, 10,
+    9, 9;
+  std::cout << "Startig to fit clusters" << std::endl;
+  model.fit(data, 100);
+  std::cout << "K-Means Clustering Complete!" << std::endl;
+  std::cout << "Cluster counts" << model.getClusterCount() << std::endl;
+  std::cout << "Assinged input class\n" << model.fit_predict(data) << "\n";
+  std::cout << "\n" << "=====================================" 
+    << "Final Cluster coords:" << "\n" << model.getClusters() << std::endl;
+}
+
 int main() {
-  std::cout << "Test functions called here" << std::endl;
+  test_k_means();
   return 0;
 }

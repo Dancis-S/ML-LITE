@@ -9,19 +9,23 @@ struct Node {
 	double threshold;
 	Node* left = nullptr;
 	Node* right = nullptr;
-	double prediction = 0.0;
 	bool is_leaf = false;
+	int predicted = -1;
 };
 
 class DecisionTree {
 public: 
 	DecisionTree();
 	void fit(Eigen::MatrixXd& input, Eigen::VectorXd& target);
-	double gini(Eigen::VectorXd& target);
+	
 	int predict(Eigen::VectorXd& input);
 
 private: 
-	Node root;
+	static Node* build(Eigen::MatrixXd& input, Eigen::VectorXd& target, std::vector<int>& indexes);
+	static double gini(std::vector<int>& target);
+	static std::pair<int, double> find_best_feature_and_threshold(Eigen::MatrixXd& input,
+		Eigen::VectorXd& target, std::vector<int>& indexes);
+	Node* root_;
 };
 
 #endif

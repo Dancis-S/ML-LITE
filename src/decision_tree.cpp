@@ -8,6 +8,10 @@
 DecisionTree::DecisionTree() : root_() {
 }
 
+DecisionTree::~DecisionTree() {
+	DecisionTree::delete_tree(root_);
+}
+
 
 double DecisionTree::gini(std::vector<int>& target) {
 	// Get the counts for each of the groups
@@ -60,6 +64,9 @@ std::pair<int, double> DecisionTree::find_best_feature_and_threshold(Eigen::Matr
 				accepted.push_back(target[index]);
 			}
 		}
+
+		if (accepted.empty() || rejected.empty()) continue;  // skip empty subsets
+
 		// Calculate gini impur for given feature and see how it fairs
 		double weight_accepted = static_cast<double>(accepted.size()) / indexes.size();
 		double weight_rejected = static_cast<double>(rejected.size()) / indexes.size();
@@ -88,8 +95,8 @@ Node* DecisionTree::build(Eigen::MatrixXd& input, Eigen::VectorXd& target, std::
 	double current_gini = DecisionTree::gini(current_targets);
 
 	if (current_gini == 0) {
-		Node node = { -1, -1, nullptr, nullptr, true, target[indexes[0]] };
-		return &node;
+		Node* node = new  Node{ -1, -1, nullptr, nullptr, true, static_cast<int>(target[indexes[0]])};
+		return node;
 	}
 
 	// Otherwise we are not a leaf and need to find the next feature to split on!
@@ -112,8 +119,8 @@ Node* DecisionTree::build(Eigen::MatrixXd& input, Eigen::VectorXd& target, std::
 	Node* left_child = DecisionTree::build(input, target, left);
 	Node* right_child = DecisionTree::build(input, target, right);
 
-	Node current = { split_on, threshold, left_child, right_child, false, -1 };
-	return &current;
+	Node* current = new Node{ split_on, threshold, left_child, right_child, false, -1 };
+	return current;
 }
 
 
@@ -121,6 +128,7 @@ void DecisionTree::fit(Eigen::MatrixXd& input, Eigen::VectorXd& target) {
 	// Check that we dont have a homogeneous group as input and that rows counts match
 	std::vector<int> std_target(target.data(), target.data() + target.size());
 	double root_gini = DecisionTree::gini(std_target);
+
 	if (input.rows() != target.rows()) {
 		throw std::invalid_argument("Rows in Input and Target don't match!");
 	}
@@ -130,12 +138,18 @@ void DecisionTree::fit(Eigen::MatrixXd& input, Eigen::VectorXd& target) {
 
 	std::vector<int> all_indexes(input.rows());
 	std::iota(all_indexes.begin(), all_indexes.end(), 0);
-	Node* root_ = DecisionTree::build(input, target, all_indexes);
-}
 
+	root_ = DecisionTree::build(input, target, all_indexes);
+}
 
 
 int DecisionTree::predict(Eigen::VectorXd& input) {
 	std::cout << "Calculate which class it belongs to" << std::endl;
 	return 0;
+}
+
+
+void DecisionTree::delete_tree(Node* node) {
+	// Implement post order traversal where we delete the node
+
 }

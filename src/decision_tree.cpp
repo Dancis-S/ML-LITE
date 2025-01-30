@@ -36,7 +36,6 @@ double DecisionTree::gini(std::vector<int>& target) {
 }
 
 
-// Function that given the input and target will return best col to split on.
 std::pair<int, double> DecisionTree::find_best_feature_and_threshold(Eigen::MatrixXd& input, 
 											Eigen::VectorXd& target, std::vector<int> &indexes) {
 	int best_feature = 0;

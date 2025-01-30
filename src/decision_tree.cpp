@@ -144,12 +144,35 @@ void DecisionTree::fit(Eigen::MatrixXd& input, Eigen::VectorXd& target) {
 
 
 int DecisionTree::predict(Eigen::VectorXd& input) {
-	std::cout << "Calculate which class it belongs to" << std::endl;
-	return 0;
+	Node* current = root_;
+	int counter = 0;
+
+	while (counter < 10000) {
+		if (current->is_leaf) {
+			return current->predicted;
+		}
+		double threshold = current->threshold;
+		int feature_index = current->feature_index;
+
+		if (input[feature_index] < threshold) {
+			current = current->left;
+		}
+		else {
+			current = current->right;
+		}
+		counter++;
+	}
+	return -1; // -1 default for broken i guess
 }
 
 
 void DecisionTree::delete_tree(Node* node) {
-	// Implement post order traversal where we delete the node
+	if (node == nullptr) {
+		return;
+	}
 
+	delete_tree(node->left);
+	delete_tree(node->right);
+
+	delete node;
 }

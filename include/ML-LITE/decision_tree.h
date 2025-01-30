@@ -29,5 +29,4 @@ private:
 	void delete_tree(Node* node);
 	Node* root_;
 };
-
 #endif

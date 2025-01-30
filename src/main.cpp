@@ -1,6 +1,8 @@
 #include "ML-LITE/linear_regression.h"
 #include "ML-LITE/perceptron.h"
 #include "ML-LITE/k_means.h"
+#include "ML-LITE/decision_tree.h"
+
 #include <Eigen/Dense>
 #include <iostream>
 
@@ -69,16 +71,37 @@ void test_k_means() {
     8, 9,
     9, 10,
     9, 9;
+
   std::cout << "Startig to fit clusters" << std::endl;
   model.fit(data, 100);
   std::cout << "K-Means Clustering Complete!" << std::endl;
   std::cout << "Cluster counts" << model.getClusterCount() << std::endl;
   std::cout << "Assinged input class\n" << model.fit_predict(data) << "\n";
-  std::cout << "\n" << "=====================================" 
-    << "Final Cluster coords:" << "\n" << model.getClusters() << std::endl;
+  std::cout << "\n" << "=================" << "Final Cluster coords:" 
+    << "====================" << "\n" << model.getClusters() << std::endl;
+}
+
+void test_decision_tree() {
+  Eigen::MatrixXd input(4, 2);
+  input << 1, 2,
+    2, 4,
+    1, 5,
+    2, 6;
+
+  Eigen::VectorXd target(4);
+  target << 1, 1, 2, 2;
+
+  DecisionTree model;
+  std::cout << "!! Starting to train Decision Tree !! \n";
+  model.fit(input, target);
+  std::cout << "!! End of training !!\n" << std::endl;
+
+  Eigen::VectorXd test_case(2);
+  test_case << 3, 6;
+  std::cout << "Prediction for point (3,6): " << model.predict(test_case) << std::endl;
 }
 
 int main() {
-  test_k_means();
+  test_decision_tree();
   return 0;
 }

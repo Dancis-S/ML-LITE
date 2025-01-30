@@ -1,10 +1,8 @@
-﻿# ML-LITE: A Lightweight Machine Learning Framework in C++
+﻿# ML-LITE: From Equations to Execution
 
 ## Overview
 
-ML-LITE is a lightweight, high-performance machine learning framework built in modern C++. Designed for modularity and efficiency, it implements core machine learning algorithms from scratch while leveraging Eigen for optimized numerical computations.
-
-This is an **ongoing project**, with the goal of continuously expanding the framework to support a variety of machine learning models. The focus is on performance, extensibility, and usability for researchers, engineers, and enthusiasts looking to explore ML in C++.
+ML-LITE is a long-term personal project focused on building machine learning models from scratch in C++. It serves as a way to explore machine learning concepts, deepen understanding, and improve C++ programming skills. The project evolves over time as new models and techniques are added, making it a continuous learning journey in both machine learning and software engineering.
 
 ## Features
 

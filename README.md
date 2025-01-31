@@ -68,7 +68,7 @@ int main() {
 cd build  
 cmake ..  
 make  
-./ml-lite  
+./main  
 ```
 
 ## License

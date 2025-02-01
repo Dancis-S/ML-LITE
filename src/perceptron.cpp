@@ -44,7 +44,7 @@ double Perceptron::accuracy(const Eigen::MatrixXd &input, const Eigen::MatrixXd 
     Eigen::VectorXd current_row = input.row(i).transpose();
     int assigned_class = predict(current_row);
 
-    if (assigned_class == target[i]) {
+    if (assigned_class == target.coeff(i)) {
       correct_count++;
     }
   }

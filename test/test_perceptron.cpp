@@ -109,5 +109,5 @@ TEST(PerceptronTests, EvaluateAccuracy) {
   p.fit(input, target, 0.1);
 
   // Evaluate accuracy (stub currently returns 0.0)
-  EXPECT_NEAR(p.evaluate(input), 1.0, 0.1);  // Expect accuracy close to 1.0
+  EXPECT_NEAR(p.accuracy(input, target), 1.0, 0.1);  // Expect accuracy close to 1.0
 }

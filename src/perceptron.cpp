@@ -36,7 +36,20 @@ int Perceptron::predict(const Eigen::VectorXd &input) {
   return predicted;
 }
 
-double Perceptron::evaluate(const Eigen::MatrixXd &input) { return 0.0; }
+double Perceptron::accuracy(const Eigen::MatrixXd &input, const Eigen::MatrixXd &target) {
+  double total_count = input.rows();
+  double correct_count = 0;
+
+  for (int i = 0; i < input.rows(); i++) {
+    Eigen::VectorXd current_row = input.row(i).transpose();
+    int assigned_class = predict(current_row);
+
+    if (assigned_class == target[i]) {
+      correct_count++;
+    }
+  }
+  return correct_count / total_count;
+}
 
 Eigen::VectorXd Perceptron::getWeights() const { return weights_; }
 

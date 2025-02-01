@@ -13,7 +13,7 @@ public:
 
   int predict(Eigen::VectorXd const &input);
 
-  double evaluate(Eigen::MatrixXd const &input);
+  double accuracy(Eigen::MatrixXd const &input, Eigen::MatrixXd const &target);
 
   Eigen::VectorXd getWeights() const;
   double getBias() const;

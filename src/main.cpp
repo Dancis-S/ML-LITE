@@ -24,13 +24,16 @@ void test_perceptron() {
   Eigen::VectorXd test1(2);
   test1 << 1, 1;
 
-  // Test case 1
+  // Test case 2
   Eigen::VectorXd test2(2);
   test2 << 5, 15;
+
+  // Evualation test case
 
   int predicted = model.predict(test1);
   std::cout << "Model classes as " << predicted << std::endl;
   std::cout << "Model classes (3,6) as  " << model.predict(test2) << std::endl;
+  std::cout << "Evaluation: " << model.accuracy(input, target) * 100 << "%" << std::endl;
 }
 
 void test_linear_regression() {
@@ -102,6 +105,6 @@ void test_decision_tree() {
 }
 
 int main() {
-  test_decision_tree();
+  test_perceptron();
   return 0;
 }

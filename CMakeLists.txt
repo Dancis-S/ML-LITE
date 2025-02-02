@@ -11,7 +11,7 @@ add_executable(main
     src/perceptron.cpp 
     src/k_means.cpp 
     src/decision_tree.cpp
-)
+ "test/test_decision_tree.cpp" "test/test_k_means.cpp")
 
 target_include_directories(main PRIVATE include)
 
@@ -28,7 +28,7 @@ if(GTEST_FOUND)
         src/perceptron.cpp 
         src/k_means.cpp 
         src/decision_tree.cpp
-    )
+     "test/test_decision_tree.cpp" "test/test_k_means.cpp")
 
     target_include_directories(test_ml_lite PRIVATE include)
     target_link_libraries(test_ml_lite PRIVATE GTest::GTest GTest::Main pthread)

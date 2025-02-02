@@ -32,7 +32,9 @@ Eigen::VectorXd LinearRegression::predict(const Eigen::MatrixXd &input) {
   return (input * weights_) + Eigen::VectorXd::Constant(input.rows(), bias_);
 }
 
-double LinearRegression::evaluate(const Eigen::MatrixXd &input) { return 0.0; }
+double LinearRegression::evaluate(const Eigen::MatrixXd &input) { 
+  return 0.0;
+}
 
 // Getters
 double LinearRegression::getBias() const { return bias_; }

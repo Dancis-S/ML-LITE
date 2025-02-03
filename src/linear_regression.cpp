@@ -32,8 +32,20 @@ Eigen::VectorXd LinearRegression::predict(const Eigen::MatrixXd &input) {
   return (input * weights_) + Eigen::VectorXd::Constant(input.rows(), bias_);
 }
 
-double LinearRegression::evaluate(const Eigen::MatrixXd &input) { 
-  return 0.0;
+double LinearRegression::evaluate(const Eigen::MatrixXd& input, const Eigen::VectorXd& target) {
+  if (input.rows() != target.rows()) {
+    throw std::invalid_argument("Rows in Input and Target don't match!");
+  }
+
+  double squared_error = 0;
+  Eigen::VectorXd predicted_values = predict(input);
+
+  for (int i = 0; i < target.size(); ++i) {
+    double diff = target[i] - predicted_values[i];
+    squared_error += diff;
+  }
+  
+  return (squared_error / target.size());
 }
 
 // Getters

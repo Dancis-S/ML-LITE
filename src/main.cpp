@@ -62,6 +62,8 @@ void test_linear_regression() {
   Eigen::MatrixXd prediction = model.predict(test_input);
 
   std::cout << "Prediction for input 10:\n" << prediction << std::endl;
+
+  std::cout << "Evaluate Input set (MSE): " << model.evaluate(input, target) << std::endl;
 }
 
 void test_k_means() {
@@ -105,6 +107,6 @@ void test_decision_tree() {
 }
 
 int main() {
-  test_perceptron();
+  test_linear_regression();
   return 0;
 }

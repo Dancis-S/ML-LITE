@@ -18,7 +18,7 @@ public:
 
   Eigen::VectorXd predict(const Eigen::MatrixXd &matrix);
 
-  double evaluate(const Eigen::MatrixXd &matrix);
+  double evaluate(const Eigen::MatrixXd &input, const Eigen::VectorXd &target);
 
 private:
   double bias_;

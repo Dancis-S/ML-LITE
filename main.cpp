@@ -1,7 +1,7 @@
-#include "ML-LITE/linear_regression.h"
-#include "ML-LITE/perceptron.h"
-#include "ML-LITE/k_means.h"
-#include "ML-LITE/decision_tree.h"
+#include "ML-LITE/supervised/linear_regression.h"
+#include "ML-LITE/supervised/perceptron.h"
+#include "ML-LITE/supervised/decision_tree.h"
+#include "ML-LITE/unsupervised/k_means.h"
 
 #include <Eigen/Dense>
 #include <iostream>

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "ML-LITE/perceptron.h"
+#include "ML-LITE/supervised/perceptron.h"
 #include <Eigen/Dense>
 
 // Test for default initialization

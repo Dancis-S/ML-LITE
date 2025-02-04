@@ -1,4 +1,4 @@
-#include "ML-LITE/perceptron.h"
+#include "ML-LITE/supervised/perceptron.h"
 
 Perceptron::Perceptron() : weights_(), bias_(1.0) {}
 Perceptron::~Perceptron() {}

@@ -1,4 +1,4 @@
-#include "ML-LITE/linear_regression.h"
+#include "ML-LITE/supervised/linear_regression.h"
 
 LinearRegression::LinearRegression() : weights_(), bias_(0.0) {}
 LinearRegression::~LinearRegression() {}

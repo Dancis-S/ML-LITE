@@ -7,6 +7,20 @@
 #include <iostream>
 
 
+// List of pre-defined functions using the model feel free to play with
+void test_perceptron();
+void test_linear_regression();
+void test_k_means();
+void test_decision_tree();
+
+int main() {
+  test_linear_regression();
+  return 0;
+}
+
+// ===================== Functions below ===============================
+// ====== Feel free to edit them and test the models as you wish =======
+
 void test_perceptron() {
   Eigen::MatrixXd input(4, 2);
   input << 1, 2,
@@ -104,9 +118,4 @@ void test_decision_tree() {
   Eigen::VectorXd test_case(2);
   test_case << 3, 6;
   std::cout << "Prediction for point (3,6): " << model.predict(test_case) << std::endl;
-}
-
-int main() {
-  test_linear_regression();
-  return 0;
 }

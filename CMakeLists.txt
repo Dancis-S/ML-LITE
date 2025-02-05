@@ -26,7 +26,7 @@ add_executable(main
     main.cpp 
     ${SUPERVISED_SOURCES}
     ${UNSUPERVISED_SOURCES}
-)
+ "src/supervised/logistic_regression.cpp" "include/ML-LITE/supervised/logistic_regression.h")
 
 target_include_directories(main PRIVATE include)
 
@@ -42,7 +42,7 @@ if(GTEST_FOUND)
         ${TEST_SOURCES}
         ${SUPERVISED_SOURCES}
         ${UNSUPERVISED_SOURCES}
-    )
+     "src/supervised/logistic_regression.cpp" "include/ML-LITE/supervised/logistic_regression.h")
 
     target_include_directories(test_ml_lite PRIVATE include)
     target_link_libraries(test_ml_lite PRIVATE GTest::GTest GTest::Main pthread)

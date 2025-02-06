@@ -6,9 +6,9 @@
 class LogisticRegression {
 public:
 	LogisticRegression();
-	~LogisticRegression();
 
-	void fit(const Eigen::MatrixXd& input, const Eigen::VectorXd& target);
+	void fit(const Eigen::MatrixXd& input, const Eigen::VectorXd& target,
+						double learning_rate, int epcohs);
 	Eigen::VectorXd predict(const Eigen::MatrixXd& input);
 	double evaluate(const Eigen::MatrixXd& input, const Eigen::VectorXd& target);
 

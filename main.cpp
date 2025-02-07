@@ -18,7 +18,7 @@ void test_logistic_regression();
 
 int main() {
   test_logistic_regression();
-  std::cout << "\n \n" << "!!== Test Ended ==!!" << std::endl;
+  std::cout << "\n" << "!!!!==== Test Ended ====!!!!" << std::endl;
   return 0;
 }
 
@@ -125,6 +125,7 @@ void test_decision_tree() {
 }
 
 void test_logistic_regression() {
+  // Training Data
   Eigen::MatrixXd input(4, 2);
   input << 1, 2,
     2, 4,
@@ -137,13 +138,28 @@ void test_logistic_regression() {
   double learning_rate = 0.1;
   int epochs = 1000;
 
+  // Train Logistic Regression Model
   LogisticRegression model;
   model.fit(input, target, learning_rate, epochs);
 
-  // Test case 1
+  // Test Predictions
   Eigen::MatrixXd test1(2, 2);
   test1 << 1, 1,
-           5, 15;
-  
-  std::cout << "Prediction of 1,1 and 5, 15:\n" << model.predict(test1) << std::endl;
+    5, 15;
+
+  std::cout << "Predictions for test set 1:\n" << model.predict(test1) << std::endl;
+
+  Eigen::MatrixXd test_input(4, 2);
+  test_input << 1, 3,
+    3, 6,
+    2, 8,
+    4, 10;
+
+  Eigen::VectorXd test_target(4);
+  test_target << 0, 0, 1, 1;
+
+
+  // Evaluate Model
+  double logloss = model.evaluate(test_input, test_target);
+  std::cout << "Evaluation on additional dataset: Logloss = " << logloss << std::endl;
 }

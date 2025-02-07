@@ -54,7 +54,7 @@ double LogisticRegression::evaluate(const Eigen::MatrixXd& input, const Eigen::V
 													( (1 - target[i]) * std::log(1 - predictions[i]));
 		error_sum += current_loss;
 	}
-	error_sum = error_sum * (-1 / sample_count);
+	error_sum = -error_sum / sample_count;
 	return error_sum;
 }
 

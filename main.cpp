@@ -1,7 +1,9 @@
 #include "ML-LITE/supervised/linear_regression.h"
 #include "ML-LITE/supervised/perceptron.h"
 #include "ML-LITE/supervised/decision_tree.h"
+#include "ML-LITE/supervised/logistic_regression.h"
 #include "ML-LITE/unsupervised/k_means.h"
+#include "ML-LITE/utils/utils.h"
 
 #include <Eigen/Dense>
 #include <iostream>
@@ -12,9 +14,11 @@ void test_perceptron();
 void test_linear_regression();
 void test_k_means();
 void test_decision_tree();
+void test_logistic_regression();
 
 int main() {
-  test_linear_regression();
+  test_logistic_regression();
+  std::cout << "\n \n" << "!!== Test Ended ==!!" << std::endl;
   return 0;
 }
 
@@ -118,4 +122,28 @@ void test_decision_tree() {
   Eigen::VectorXd test_case(2);
   test_case << 3, 6;
   std::cout << "Prediction for point (3,6): " << model.predict(test_case) << std::endl;
+}
+
+void test_logistic_regression() {
+  Eigen::MatrixXd input(4, 2);
+  input << 1, 2,
+    2, 4,
+    1, 5,
+    2, 6;
+
+  Eigen::VectorXd target(4);
+  target << 0, 0, 1, 1;
+
+  double learning_rate = 0.1;
+  int epochs = 1000;
+
+  LogisticRegression model;
+  model.fit(input, target, learning_rate, epochs);
+
+  // Test case 1
+  Eigen::MatrixXd test1(2, 2);
+  test1 << 1, 1,
+           5, 15;
+  
+  std::cout << "Prediction of 1,1 and 5, 15:\n" << model.predict(test1) << std::endl;
 }

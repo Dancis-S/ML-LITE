@@ -4,7 +4,7 @@
 namespace Utils {
 
 	double sigmoid(double value) {
-		return (1 / (1 + std::pow(std::exp(1.0), -(value))));
+		return (1.0 / (1.0 + std::pow(std::exp(1.0), -(value))));
 	}
 
 }

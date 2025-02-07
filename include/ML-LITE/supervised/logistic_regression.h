@@ -11,6 +11,8 @@ public:
 						double learning_rate, int epcohs);
 	Eigen::VectorXd predict(const Eigen::MatrixXd& input);
 	double evaluate(const Eigen::MatrixXd& input, const Eigen::VectorXd& target);
+	Eigen::VectorXd getWeights();
+	double getBias();
 
 private:
 	Eigen::VectorXd weights_;

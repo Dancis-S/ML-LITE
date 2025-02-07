@@ -10,12 +10,17 @@ void LogisticRegression::fit(const Eigen::MatrixXd& input, const Eigen::VectorXd
 	weights_ = Eigen::VectorXd::Random(input.cols(), 1) * 0.5;
 	int sample_count = input.rows();
 
-	while (epochs) {
+	while (--epochs) {
 		Eigen::VectorXd errors = Eigen::VectorXd::Zero(weights_.rows());
 		double error_sum = 0.0;
 
 		for (int i = 0; i < input.rows(); i++) {
-			// Computer the 
+			double value = (input.row(i).dot(weights_)) + bias_;
+			double classification_error = Utils::sigmoid(value) - target[i];
+
+			error_sum += classification_error;
+			Eigen::VectorXd difference = input.row(i).transpose() * (classification_error);
+			errors += difference;
 		}
 
 		// update the weights and bias
@@ -29,7 +34,8 @@ Eigen::VectorXd LogisticRegression::predict(const Eigen::MatrixXd& input) {
 	if (input.cols() != weights_.rows()) {
 		throw std::invalid_argument("Input columns and weight rows don't match!");
 	}
-	return (input * weights_) + Eigen::VectorXd::Constant(input.rows(), bias_);
+	Eigen::VectorXd computed = (input * weights_) + Eigen::VectorXd::Constant(input.rows(), bias_);
+	return computed.unaryExpr(&Utils::sigmoid);
 }
 
 
@@ -50,4 +56,14 @@ double LogisticRegression::evaluate(const Eigen::MatrixXd& input, const Eigen::V
 	}
 	error_sum = error_sum * (-1 / sample_count);
 	return error_sum;
+}
+
+
+Eigen::VectorXd LogisticRegression::getWeights() {
+	return weights_;
+}
+
+
+double LogisticRegression::getBias() {
+	return bias_;
 }

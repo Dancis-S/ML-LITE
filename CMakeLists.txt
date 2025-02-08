@@ -10,6 +10,7 @@ set(SUPERVISED_SOURCES
     src/supervised/perceptron.cpp
     src/supervised/decision_tree.cpp
     src/supervised/logistic_regression.cpp
+    src/supervised/support_vector_machine.cpp
 )
 
 set(UNSUPERVISED_SOURCES

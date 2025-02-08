@@ -12,13 +12,14 @@ ML-LITE is a long-term personal project focused on building machine learning mod
   - Linear Regression (Gradient Descent)
   - Perceptron (Binary Classification)
   - Decision Tree (Gini Impurity-based Splitting)
+  - Logistic Regression
+  - Support Vector Machine (SVM)
+  
 - **Unsupervised Learning**
   - K-Means Clustering
 
 🚀 Upcoming Models:
 
-- Logistic Regression
-- Support Vector Machine (SVM)
 - Principal Component Analysis (PCA)
 - Gaussian Mixture Models (GMM)
 - Random Forests & Gradient Boosting

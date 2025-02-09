@@ -17,7 +17,7 @@ Eigen::VectorXd SVM::predict(Eigen::MatrixXd& input) {
 
 
 double SVM::evaluate(Eigen::MatrixXd& input, Eigen::VectorXd& target) {
-
+	return 0.0;
 }
 
 

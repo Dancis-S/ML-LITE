@@ -6,3 +6,4 @@
 /include/Eigen/
 /out
 .vs
+*.xltx

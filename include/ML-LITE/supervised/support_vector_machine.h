@@ -5,7 +5,7 @@
 
 class SVM {
 public:
-	SVM();
+	SVM(double C = 1.0);
 
 	void fit(Eigen::MatrixXd& input, Eigen::VectorXd& target);
 	Eigen::VectorXd predict(Eigen::MatrixXd& input);
@@ -17,6 +17,9 @@ public:
 private:
 	Eigen::VectorXd weights_;
 	double bias_;
+	double C_;
+
+
 };
 
 #endif
